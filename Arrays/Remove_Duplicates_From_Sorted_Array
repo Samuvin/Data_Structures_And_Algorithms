@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int size;
+    cin>>size;
+    int arr[size];
+    for(int i=0;i<size;i++)
+    {
+        cin>>arr[i];
+    }
+    int res=1;
+    for(int i=1;i<size;i++)
+    {
+        if(arr[i]!=arr[res-1])
+        {
+            arr[res]=arr[i];
+            res++;
+        }
+    }
+    for(int i=0;i<res;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+
+
+}
+/*
+The Intution is we have to keep the count of the before element as In a array First element is always distinct so we start iteration from 1 and we make the res as 1 still now we have one distinct element
+after next iteration we have to check the current element with the previous element wheater they are same or not if not same then we found a next distinct element so we need to place the current element in
+the res index ad make the res as 1 where res is the index of the next distinct element to be placed and the count of the distinct element
+*/
