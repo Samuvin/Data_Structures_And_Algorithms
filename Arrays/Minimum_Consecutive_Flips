@@ -1,0 +1,70 @@
+#include<iostream>
+using namespace std;
+void Minimum_Groups_Flips_TO_Make_Same(int arr[],int size)
+{
+    for(int i=1;i<size;i++)
+    {
+        if(arr[i]!=arr[i-1])
+        {
+            if(arr[i]!=arr[0])
+            {
+                cout<<"From "<<i<<" to ";
+            }
+            else
+            {
+                cout<<i-1<<"\n"; 
+            }
+        }
+    }
+    if(arr[size-1]!=arr[0])
+        {
+            cout<<(size-1);
+        }
+}
+int main()
+{
+    int size;
+    cin>>size;
+    int arr[size];
+    for(int i=0;i<size;i++)
+    {
+        cin>>arr[i];
+    }
+    Minimum_Groups_Flips_TO_Make_Same(arr,size);
+}
+/*
+Given a Binary Array We have to convert the array either 0s or 1s
+we need to do this in minimum number of group flips
+
+Input : arr[] = {1, 1, 0, 0, 0, 1}
+Output :  From 2 to 4
+Explanation : We have two choices, we make all 0s or do all 1s.  We need to do two group flips to make all elements 0 and one group flip to make all elements 1.  Since making all elements 1 takes the least group flips, we do this.
+
+
+The Intuition is we are Given a Binary Array 1 0 0 0 1 0 0 1 0 1
+
+If we observe the given array then we can say that if 
+starting element and ending elements are same then we have to flip the other group
+if we found starting and ending as 1 we have to flip 0 or else if both are 0 then
+we have to flip 1 
+
+If Both are not same then the 1s gorups and 0s groups are same so we can flip any one of these
+
+Condition 1
+
+1 0 0 0 1 0 0 1 0 0 1
+
+Here Starting and ending are same as 1
+As 1s group count is greater than 0s group count so we can flip the zero group
+
+Condition 2
+
+0 1 1 0
+
+Here Starting and ending are same as 0
+As 0s group count is greater than 1s group count so we flip the ones group count
+
+If all are same we need not print anything
+
+
+*/
