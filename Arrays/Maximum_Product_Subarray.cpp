@@ -19,6 +19,23 @@ long long maximum_product(vector<int> arr)
     return maxi;
 }
 
+
+long long Method_2(vector<int> arr)
+{
+    int maxi=arr[0];
+    int mini=arr[0];
+    int res=INT_MIN;
+    for(int i=1;i<arr.size();i++)
+    {
+        int temp=max({arr[i],arr[i]*maxi,arr[i]*mini});
+        mini=min({arr[i],arr[i]*maxi,arr[i]*mini});
+        maxi=temp;
+        res=max(res,maxi);
+    }
+    return res;
+}
+
+
 int main()
 {
     int size;
