@@ -2,6 +2,10 @@
 #include<vector>
 using namespace std;
 
+/*
+Time Complexity : O(N)
+Space Complexity: O(N)+O(N)
+*/
 int Fibbo_Memo(int n,vector<int>&dp)
 {
     if(n<=1)
@@ -14,7 +18,10 @@ int Fibbo_Memo(int n,vector<int>&dp)
     }
     return dp[n]=Fibbo_Memo(n-1,dp)+Fibbo_Memo(n-2,dp);
 }
-
+/*
+Time Complexity : O(N)
+Space Complexity: O(N)
+*/
 int Fibbo_Tabulation(int n,vector<int>&dp)
 {
     dp[0]=0;
@@ -25,7 +32,10 @@ int Fibbo_Tabulation(int n,vector<int>&dp)
     }
     return dp[n];
 }
-
+/*
+Time Complexity : O(N)
+Space Complexity: O(1)
+*/
 long long Fibbo_Space_Optimization(long long n)
 {
     long long prev1=0;
