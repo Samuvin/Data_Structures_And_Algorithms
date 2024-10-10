@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "C++: Compile and Run with Input/Output Files",
+			"type": "shell",
+			"command": "g++ -std=c++17 \"${file}\" -o \"${fileDirname}\\${fileBasenameNoExtension}\" && \"${fileDirname}\\${fileBasenameNoExtension}\" < \"${fileDirname}\\input.txt\" > \"${fileDirname}\\output.txt\"",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": ["$gcc"],
+			"detail": "Compiles and runs the active C++ file with input from input.txt and output to output.txt"
+		}
+	]
+}
