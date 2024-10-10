@@ -1,6 +1,16 @@
 {
-    "cmd": ["javac", "$file_name", "&&", "java", "$file_base_name"],
-    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+    "shell_cmd": "javac file.java && java file",
+    "working_dir": "$file_path",
+    "file_regex": "^(...*?):([0-9]*):?([0-9]*)",
     "selector": "source.java",
-    "shell": true
+    "encoding": "utf-8",
+    "variants":
+    [
+        {
+            "name": "Run with Input File",
+            "shell_cmd": "javac file.java && java file < input.txt > output.txt",
+            "working_dir": "$file_path",
+            "file_regex": "^(...*?):([0-9]*):?([0-9]*)",
+        }
+    ]
 }
