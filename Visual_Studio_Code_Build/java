@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Java: Compile and Run with Input/Output Files",
+			"type": "shell",
+			"command": "javac \"${file}\" && (java -cp \"${fileDirname}\" ${fileBasenameNoExtension} < \"${fileDirname}\\input.txt\" > \"${fileDirname}\\output.txt\")",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": ["$javac"],
+			"detail": "Compiles and runs the active Java file with input from input.txt and output to output.txt"
+		}
+	]
+}
