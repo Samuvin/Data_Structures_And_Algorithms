@@ -80,3 +80,16 @@ General Structure for Backtracking and DP Solutions
 Dynamic Programming: Identify overlapping subproblems and store solutions.
 Backtracking: Track decisions and retract invalid paths to explore alternatives.
 Optimize with Hashing: Cache results to enhance time efficiency, particularly for unique subproblems in recursive calls.
+
+
+
+
+int rec(int level)
+{
+	for (all choices)
+	{
+		if (check(valid choice))
+			move(choice)
+		}
+}
+
