@@ -1,0 +1,82 @@
+Dynamic Programming, Hashing, Backtracking, and Formulation
+
+This document outlines the structures and processes for building solutions to problems using Dynamic Programming (DP), 
+Hashing, and Backtracking. Each methodology is structured around common problem-solving elements like levels, choices, checks, and moves. 
+By understanding and formalizing these aspects, we can model efficient solutions across a variety of problem types.
+
+Dynamic Programming (DP)
+Dynamic Programming breaks down problems into overlapping subproblems and stores solutions to avoid redundant calculations. 
+Formulating states and transitions carefully allows efficient recursion or iteration.
+
+Components of DP Solutions
+
+Forms and Patterns: 
+  Identify recurring structures within the problem that allow breaking it into subproblems.
+DP States:
+  Each state represents a unique configuration of the problem, usually determined by parameters in a recursive function.
+  These states map to what the problem specifically asks to calculate.
+Transition Modeling:
+  Define the relationships between states.
+  Set up recursive transitions based on how current states depend on previous states.
+Time Limit Check: 
+  Ensure the solution meets the problem’s constraints.
+Save and Return: 
+  Memoize or cache results to avoid redundant calculations and return results efficiently.
+
+Example: 
+  Counting Ways to Reach N Using 1, 2, or 3 Steps
+    Level: The current step.
+    Choices: Take 1, 2, or 3 steps from the current level.
+    Check: Ensure the choice doesn't exceed N.
+    Move: Recur to the next step based on the jump.
+
+// Pseudo code structure
+dp[i] = dp[i-1] + dp[i-2] + dp[i-3] // Based on the choices of 1, 2, or 3 steps
+
+Recursion and Backtracking
+Recursion and backtracking involve exploring possible configurations of a solution space. 
+Key aspects include systematically iterating through choices and validating each configuration. 
+Backtracking allows retracting invalid choices and exploring alternate branches.
+
+Components of Recursive Solutions
+Level:
+  Represents the current configuration of the problem or place within the recursive tree.
+  Think of levels as points in the solution place you are currently exploring.
+Choices:
+  Possible actions available at each level.
+Check:
+  Verify if the choice is valid given the problem constraints.
+Move:
+  Proceed to the next recursive level with the choice applied, creating a new instance of the problem.
+
+Example 1: Counting Ways to Reach the Top of a Staircase
+Problem: Given a staircase with N steps, count the number of ways to reach the top if you can take either 1, 2, or 3 steps at a time.
+
+Level: Represents the current step on the staircase.
+
+Choices: Jump 1, 2, or 3 steps.
+  Check: Ensure the jump does not exceed N.
+  Move: After taking a jump, recursively call for the remaining steps.
+  DP Recurrence: ways(n) = ways(n-1) + ways(n-2) + ways(n-3)
+
+Example 2: N-Queens Problem
+Problem: Place N queens on an N x N chessboard so that no two queens threaten each other.
+
+  Level: Each row represents a level.
+  Choices: Place a queen in one of the columns of the current row.
+  Check: Ensure the queen placement doesn’t threaten any existing queens.
+  Move: Place the queen and move to the next row.
+
+Recursive Strategy: 
+  Recursively place queens row by row, backtracking when conflicts arise.
+
+
+General Structure for Backtracking and DP Solutions
+  Level: Define the current stage in solving the problem.
+  Choices: List possible options from the current configuration.
+  Check: Confirm the chosen option adheres to problem constraints.
+  Move: Apply the option and recursively evaluate the new configuration.
+
+Dynamic Programming: Identify overlapping subproblems and store solutions.
+Backtracking: Track decisions and retract invalid paths to explore alternatives.
+Optimize with Hashing: Cache results to enhance time efficiency, particularly for unique subproblems in recursive calls.
