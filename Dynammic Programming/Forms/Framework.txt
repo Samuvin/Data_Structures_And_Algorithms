@@ -1,0 +1,97 @@
+Dynamic Programming (DP) Problem-Solving Framework
+
+1. Problem Analysis: -> Look for the form of the problem
+  Identifying the Problem’s Form:
+    Analyze the question to understand if it can be solved using DP. Typical DP problems involve optimization (min/max values) or counting (ways to achieve a goal).
+  Recognize key elements:
+    Constraints and limits that hint at a DP structure.
+  Overlapping subproblems and optimal substructure.
+
+2. Define the State and Meaning
+Define the State Representation
+Identify the variables that uniquely represent each subproblem. Decide on a DP state variable structure that breaks down the problem:
+
+𝑑𝑝[index/level][time][items]= optimal solution related to question
+Decide state and meaning
+   Dp[_____]=_______
+      state  meaning
+   dp[level][time][item]=> what the question asks for the optimal substructure that is level time and item taken
+
+Example:
+dp[level][time][item]: where level refers to the decision point (like items in a knapsack), time might represent a constraint (e.g., time left or capacity), and item might represent choices left to be made.
+State Meaning
+Clearly document what each state variable represents. 
+For example:
+    "dp[level][time][item] gives the optimal solution considering level, time constraint, and item left to choose."
+
+3. Decide the Transitions
+  Define Choices
+    Typically, two choices arise: pick or skip the current item. For each choice:
+
+    Define what happens if you take the current element, ensuring any constraints are respected.
+    Define what happens if you skip it and move to the next state.
+  Update the State
+    Check feasibility and update the state accordingly:
+
+  If the item can be picked, update the next state with the choice’s impact.
+  If it’s skipped, proceed without updating the affected constraint.
+
+4. Time and Space Complexity Analysis
+
+Time Complexity
+Calculate based on the number of states and the average transition cost:
+  TC -> (No of states)*(1+ average cost of transition)
+
+    =>(No of state) * (1 + Average No of Transisiton per state
+    Dp[a][b][c]
+    No of states of a dp
+       a -> 0 - n
+       b -> 0 - m
+       c -> 0 - k
+       => (n*m*k)
+
+    Average No og Transition per state
+       pick    -> 1 
+       notpick -> 1
+ 
+    Tc = (n*m*k)+(1+2)
+    order notation =>(n*m*k)
+
+
+TC=(No of states)×(1+Average cost per transition)
+For a 3-dimensional DP dp[a][b][c]:
+
+a ranges from 0 to n
+b from 0 to m
+c from 0 to k.
+Total states: n×m×k
+Each state has 2 possible transitions (pick, not pick).
+
+  TC=(n×m×k)×2
+Space Complexity
+  Number of states reflects the space complexity.
+
+5. Code Structure
+Pruning
+Include early exits for unnecessary calculations or states that cannot lead to optimal solutions.
+
+Base Case
+Define cases where recursion stops, usually the smallest or simplest state.
+
+Cache Check
+Use memoization to avoid recalculating states.
+
+Compute Transitions
+Implement transitions as per decisions made in Step 3.
+
+Save and Return
+Store computed values in dp to ensure efficient retrieval.
+    ->pruning
+
+    ->base case
+
+    ->cache check
+
+    ->compute / transition
+
+    ->save and return
