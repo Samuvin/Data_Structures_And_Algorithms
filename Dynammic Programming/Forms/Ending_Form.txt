@@ -1,0 +1,33 @@
+Structure: Ending Form
+
+State Definition:
+      The dp[i] array represents the "best solution ending at index i". In the context of LIS, this means the longest increasing subsequence (LIS) 
+that includes the element at index i.
+      dp[i] specifically stores the length of the LIS that ends at index i.
+
+Problem Setup:
+Given an array of integers Arr with indices from 0 to N-1, our task is to calculate the LIS ending at each index i.
+The final answer to the LIS problem can be found by taking the maximum value of the dp array once we ve populated it.
+
+Transition:
+
+To compute dp[i], we check all previous indices j where j < i to see if we can extend an LIS ending at j by including Arr[i].
+If Arr[j] < Arr[i], it means Arr[i] can follow Arr[j] in an increasing sequence. Thus, we set:
+
+                                              dp[i]=max(dp[i],dp[j]+1)
+
+This transition ensures that we’re building up the longest subsequence ending at each index.
+
+Base Case:
+
+Every single element is, by itself, an increasing subsequence of length 1. Thus, for all i, initialize dp[i] = 1.
+Final Answer:
+
+After filling in the dp array, the length of the LIS for the entire array is the maximum value in dp.
+
+
+Complexity
+Time Complexity: 
+𝑂(𝑁^2) as we iterate over each pair of indices (i, j) with j < i.
+Space Complexity: 
+O(N) for the dp array.
