@@ -1,0 +1,44 @@
+Game DP and Combinatorial Game Theory
+In game theory, Combinatorial Game Theory (CGT) deals with games that have perfect information 
+(all players know all moves that have been made) and no random elements. Here, we're examining impartial games, 
+where both players follow the same set of rules and can make identical moves when given the same configuration.
+
+Key Terms
+Impartial Game: 
+      A game where both players have access to the same moves from any given configuration.
+Configuration: 
+      Represents the current state of the game, which can be defined by the number of chips or items left in the game.
+Winning (W) and Losing (L) States: 
+      A configuration is a winning state if the current player can force a win, regardless of the opponent's moves. Conversely, a configuration is a losing state if every move from this state leads to a winning state for the opponent.
+
+Problem: Subtraction Game with Chips
+
+Consider a game with a starting number X of chips in a pool:
+
+In each move, a player can remove a number of chips equal to a power of 2: y = 2^m (for any m where 2^m <= X).
+A player loses if they cannot make a move (i.e., if there are 0 chips left on their turn).
+
+Approach: Dynamic Programming (DP) Formulation
+
+We aim to build a DP array dp[x] to determine if the configuration with x chips is a winning or losing state for the current player.
+
+State Definition:
+
+dp[x]: Represents whether the configuration with x chips is a winning or losing state.
+dp[x] = 1 if it is a winning state (the current player has a winning strategy).
+dp[x] = 0 if it is a losing state (every move leads to a configuration where the opponent has a winning strategy).
+Transition:
+
+For a given x, a player can take 2^0, 2^1, 2^2, ..., 2^m chips (where 2^m <= x).
+Transition rule: dp[x] is a winning state if there exists a move that leads the opponent to a losing state. Hence, for each x, check:
+
+                                          dp[x]=1 if any dp[x−2]=0
+Otherwise, if all moves from x lead to configurations marked as winning for the opponent, dp[x] is a losing state:
+  
+                                                      dp[x]=0
+Base Case:
+
+dp[0] = 0: With 0 chips left, the player to move loses since they have no valid moves.
+Time Complexity Analysis
+  Space Complexity: O(N), where N is the maximum number of chips.
+  Time Complexity: For each x, we explore O(log x) possible moves (since each move removes 2^m chips, doubling each time). Thus, the time complexity is O(N * log N).
