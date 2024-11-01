@@ -8,5 +8,6 @@ Constructive:
 	Dimensions/setup are the key  matrix
 	what is the last move 
 	basic math
+	Observe the final result
 	
 	
