@@ -1,0 +1,49 @@
+Interval DP 
+
+Interval Dynamic Programming (Interval DP) is useful for problems where the solution depends on breaking a sequence into sub-intervals 
+in an optimal way. Here, we’ll focus on the Rod Cutting Problem as an example of applying Interval DP, aiming to minimize the total cost
+of cutting a rod into segments.
+
+Problem Structure
+In the Rod Cutting Problem:
+Rod Length 
+𝑛
+n: We have a rod of length 
+
+Set of Cuts:         We are given a set of positions along the rod where cuts can be made.
+Cost of Each Cut:    The cost for each cut is the length of the segment being cut at that point.
+
+The objective is to make all the cuts in an order that minimizes the total cost.
+
+Steps to Solve Using Interval DP
+1. Define the State (DP Array)
+    Let cuts be an array that stores the positions of each cut along with the boundaries [0, cuts, n].
+    Define dp[l][r] as the minimum cost required to cut the rod from position cuts[l] to position cuts[r].
+2. DP State Transition
+    To fill in the value of dp[l][r]:
+    Try Each Cut Position within the interval (l, r).
+    Split the Interval at each cut position i where l < i < r.
+Compute the cost of making the cut at position i, which will split the interval into two sub-intervals:
+
+Left interval: dp[l][i] (from cuts[l] to cuts[i])
+Right interval: dp[i][r] (from cuts[i] to cuts[r])
+
+The cost of making the cut at i is the length of the current interval plus the costs of cutting each resulting sub-interval:
+
+                                  dp[l][r]=(cuts[r]−cuts[l])+dp[l][i]+dp[i][r]
+
+We take the minimum of these costs for each possible cut within the interval (l, r):
+
+                            dp[l][r]=min(dp[l][r],(cuts[r]−cuts[l])+dp[l][i]+dp[i][r])
+3. Initialization
+For any interval of length zero or one (where r - l <= 1), there is no cost because no cut is needed:
+  
+                                              dp[l][l+1]=0
+4. Fill the DP Table in Increasing Order of Interval Size
+
+Start with small intervals (length = 2) and gradually fill in longer intervals.
+By building up from smaller subproblems, each dp[l][r] value relies only on previously computed values.
+
+5. Final Answer
+The minimum cost to cut the entire rod is found at dp[0][numCuts - 1], 
+where numCuts is the size of the cuts array, including boundaries.
