@@ -30,4 +30,43 @@ Complexity
 Time Complexity: 
 𝑂(𝑁^2) as we iterate over each pair of indices (i, j) with j < i.
 Space Complexity: 
-O(N) for the dp array.
+
+
+
+State Definition:
+
+Let dp[i][j] be the maximum sum of any path that ends at cell (i, j).
+      This means that dp[i][j] represents the maximum path sum that can be achieved by moving to cell (i, j) from some previous cell,       accumulating values along the way.
+Transition:
+      To determine dp[i][j], we consider possible paths leading into cell (i, j):
+      We could arrive from the cell above (i-1, j).
+      We could arrive from the cell to the left (i, j-1).
+
+Therefore, the transition for each cell (i, j) is:
+
+                        dp[i][j]=max(dp[i−1][j]+Arr[i][j],dp[i][j−1]+Arr[i][j])
+Here:
+
+      dp[i-1][j] + Arr[i][j] represents the maximum sum path to (i, j) coming from the cell directly above.
+      dp[i][j-1] + Arr[i][j] represents the maximum sum path to (i, j) coming from the cell directly to the left.
+
+Initialization:
+
+Starting from a specific cell, such as (0, 0), set:
+
+                                                dp[0][0]=Arr[0][0]
+For cells in the first row and first column, only one direction is feasible:
+For the first row (moving only from the left): dp[0][j] = dp[0][j-1] + Arr[0][j].
+For the first column (moving only from above): dp[i][0] = dp[i-1][0] + Arr[i][0].
+
+Final Answer:
+
+After filling in dp for all cells, the value dp[N-1][M-1] (bottom-right corner) will contain the maximum sum path that ends at (N-1, M-1), assuming we aim to reach this cell.
+
+Complexity:
+
+Time Complexity: 
+      O(N×M) since each cell (i, j) only requires constant time to evaluate.
+Space Complexity: 
+      O(N×M) to store dp values for each cell.
+      O(N) for the dp array.
