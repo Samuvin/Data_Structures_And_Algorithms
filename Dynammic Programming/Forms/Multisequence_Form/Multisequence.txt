@@ -1,0 +1,45 @@
+Multi-Sequence DP
+    we work with multiple sequences (e.g., strings or arrays) and use multiple pointers to keep track of positions within each sequence. 
+    The goal here is to find the best result across both sequences by making decisions based on elements from each.
+
+In the Longest Common Subsequence (LCS) problem, we operate on two strings, A and B, with two pointers i and j representing the current positions 
+in A and B, respectively.
+
+Structure: 
+Multi-Sequence DP for Longest Common Subsequence
+
+State Definition:
+
+
+        Define dp[i][j] as the length of the LCS of A[i...n] and B[j...m].
+
+The problem’s answer will be dp[0][0], which represents the LCS of the entire strings A and B.
+
+Transition:
+
+        At each position (i, j), where A[i] and B[j] are the current characters in strings A and B:
+        If A[i] == B[j]: Add this character to the LCS and move both pointers forward:
+  
+                                  dp[i][j]=dp[i+1][j+1]+1
+
+        If A[i] != B[j]: We have two choices:
+        Skip A[i] and keep B[j], which gives dp[i+1][j].
+        Skip B[j] and keep A[i], which gives dp[i][j+1].
+Take the maximum of these two options to ensure the longest sequence:
+
+                               dp[i][j]=max(dp[i+1][j],dp[i][j+1])
+Base Cases:
+
+If we reach the end of either string (e.g., i >= n or j >= m), the LCS length is 0 since there are no more characters to match.
+
+Example with Strings:
+
+For A = "AGGTAB" and B = "GXTXAYB", we want dp[0][0], which represents the LCS of both strings starting from the beginning.
+Following the transitions, we will fill out the dp table by making decisions at each (i, j) based on the matching conditions.
+
+Complexity:
+Time Complexity: 
+
+O(N×M), where N is the length of A and M is the length of B, as we only compute each state once.
+Space Complexity: 
+O(N×M) for the dp table.
