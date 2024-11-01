@@ -1,0 +1,12 @@
+Constructive:
+
+	Think in reverse
+	Greedy/sorting
+	Bitmask Bitmapping Bit by bit
+	Decode the operation
+	Prefix sums/Suffix sums Properties value changes according to pattern
+	Dimensions/setup are the key  matrix
+	what is the last move 
+	basic math
+	
+	
