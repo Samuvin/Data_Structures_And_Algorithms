@@ -43,3 +43,40 @@ Time Complexity:
 O(N×M), where N is the length of A and M is the length of B, as we only compute each state once.
 Space Complexity: 
 O(N×M) for the dp table.
+
+
+
+The Longest Common Subsequence (LCS) of three strings involves finding the longest subsequence common to three sequences, typically represented as A, B, and C. To solve this using dynamic programming, we’ll extend the 2D approach for two strings to a 3D approach, where each state in our DP table represents a combination of indices from all three strings.
+
+Structure: 
+Multi-Sequence DP for LCS of Three Strings
+
+1. State Definition
+    Define dp[i][j][k] as the length of the LCS for substrings A[i...n], B[j...m], and C[k...x].
+    Thus, the final answer to the problem will be stored in dp[n][m][p], where n, m, and p are the lengths of strings A, B, and C,         respectively.
+2. Transitions
+    For each (i, j, k), there are two main cases:
+    
+    Case 1: Characters in all three strings match, i.e., A[i] == B[j] == C[k].
+    In this case, we can include this character in the LCS and move all three pointers forward:
+                                
+                                            dp[i][j][k]=dp[i+1][j+1][k+1]+1
+
+    Case 2: Characters do not match in all three strings.
+    In this case, we have several options:
+    Discard the character from one string while keeping the other two unchanged.
+    Take the maximum LCS possible by trying all these options:
+
+                                 dp[i][j][k]=max(dp[i+1][j][k],dp[i][j+1][k],dp[i][j][k+1])
+
+This way, we maximize the LCS length by choosing the best possible option at each step.
+
+3. Base Cases
+If any of the strings is empty (i == 0, j == 0, or k == 0), then the LCS length is 0 because there are no characters to match across all strings.
+
+4. Complexity Analysis
+Time Complexity: 
+        O(n×m×p) where n, m, and p are the lengths of A, B, and C respectively, as we calculate each dp[i][j][k] only once.
+Space Complexity: 
+    
+        O(n×m×p) for storing the results in the dp array.
