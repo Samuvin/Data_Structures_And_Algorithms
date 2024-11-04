@@ -36,6 +36,7 @@ int memo(int level, int prev)
 	return ans;
 }
 
+
 int main()
 {
 	cin >> N;
@@ -48,3 +49,12 @@ int main()
 	}
 	cout << memo(0, -1);
 }
+
+/*
+Tc:#S=N
+   #T=3
+   O(N*M)
+Sc:O(N*M)
+   M=3
+   O(N)
+*/
