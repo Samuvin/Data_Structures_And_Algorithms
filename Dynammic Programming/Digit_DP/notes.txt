@@ -1,0 +1,25 @@
+A Comprehensive Guide to Digit DP (Digit Dynamic Programming)
+Digit DP is a powerful technique used to solve problems involving numbers and their properties (like divisibility, sums of digits, etc.).
+It is particularly useful when dealing with ranges of numbers, and we need to compute the result based on certain conditions that depend on the digits of the number.
+
+What is Digit DP?
+Digit DP is a technique where we break down a number into its individual digits and make decisions for each digit one by one, 
+while keeping track of certain states (e.g., whether we are still restricted by the original number, the sum of digits, divisibility, etc.).
+
+Key Concepts:
+State Representation:
+
+The state of the DP is typically represented as (index, sum of digits, modulus) or similar variables.
+index indicates which digit we are currently processing.
+sum of digits can be used when we are required to compute the sum of digits.
+modulus can be used when the problem involves divisibility (e.g., divisibility by 7, 9, etc.).
+Transition:
+
+For each index (digit), we recursively explore all valid digits that can appear at that position.
+We track whether we are still bounded by the original number or whether we can pick any digit freely.
+Memoization:
+
+The result of each subproblem is memoized (stored in a table) to avoid redundant calculations and speed up the solution.
+Base Case:
+
+The base case is usually when we have processed all digits and need to evaluate the property of the number formed by the digits so far (e.g., checking if the sum is divisible by a given number).
