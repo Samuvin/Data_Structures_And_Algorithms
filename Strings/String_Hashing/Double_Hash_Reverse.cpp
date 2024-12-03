@@ -19,7 +19,7 @@ struct PolyHasher
 		for (int i = 0; i < len; i++) 
 		{
 			int num = (s[i] - 'a' + 1 ) % MOD;
-			base[i + 1] = (1LL * base[i] * k + num) % MOD;
+			base[i + 1] = (1LL * base[i] * prime + num) % MOD;
 			powerK[i + 1] = (1LL * prime * powerK[i]) % MOD;
 		}
 
