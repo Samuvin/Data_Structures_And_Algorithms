@@ -1,0 +1,20 @@
+
+Radix sort will be linear if they are in small range
+
+Sort based on digit by digit
+
+Here we have a larger range and the range fall from 0 to base
+
+TC=>Teta(d*(n+b))
+
+
+d=>every digit
+n=>Array elements
+b=>Base
+
+If we increase the base b then time reduce but the space will be increase 
+
+We can increase space and reduce time
+
+
+SC=>Teta(n+b)
