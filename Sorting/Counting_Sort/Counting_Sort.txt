@@ -1,0 +1,13 @@
+Counting Sort
+Can be useful if the numbers are in the small range 
+
+TC-> O(n+k) time to sort n elements in range from 0 to k-1
+
+
+If we have n elements 
+It is efficient only when
+k is linear in terms of N
+
+If k is N N/2 N/4 2N 3N
+
+nlogn quartic it will be not useful
