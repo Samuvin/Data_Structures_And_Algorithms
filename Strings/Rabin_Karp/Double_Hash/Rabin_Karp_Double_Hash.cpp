@@ -81,22 +81,25 @@ using namespace std;
 // Reverse polynomial Calculation
 struct Rabin_Karp
 {
-	const long long RADIX_1 = 31;
-	const long long RADIX_2 = 29;
-	const long long MOD_1 = 1e9 + 7;
-	const long long MOD_2 = 1e9 + 33;
+	using ll = long long;
+	using RKHash = pair<ll, ll>;
+
+	const ll RADIX_1 = 31;
+	const ll RADIX_2 = 29;
+	const ll MOD_1 = 1e9 + 7;
+	const ll MOD_2 = 1e9 + 33;
 
 	// Convert the character to integer
-	long long charToValue(char ch)
+	ll charToValue(char ch)
 	{
 		return ch - 'a' + 1;
 	}
 
 	// Compute the Hash for a specific string
-	pair<long long, long long> Hash_Value(string &str, long long len)
+	RKHash Hash_Value(string &str, ll len)
 	{
-		long long hash1 = 0, hash2 = 0;
-		long long factor1 = 1, factor2 = 1;
+		ll hash1 = 0, hash2 = 0;
+		ll factor1 = 1, factor2 = 1;
 
 		for (int i = len - 1; i >= 0; i--)
 		{
@@ -112,7 +115,8 @@ struct Rabin_Karp
 		return {hash1 % MOD_1, hash2 % MOD_2};
 	}
 
-	long long rollHash(long long stringHash, long long old_char, long long new_char, const long long MOD, long long RADIX, long long MAX_WEIGHT)
+	// Roll the hash value
+	ll rollHash(ll stringHash, ll old_char, ll new_char, const ll MOD, ll RADIX, ll MAX_WEIGHT)
 	{
 		stringHash = (stringHash * RADIX) % MOD;							   // Multiply the current hash by the RADIX
 		stringHash = (stringHash - (old_char * MAX_WEIGHT) % MOD + MOD) % MOD; // Remove the old character
@@ -120,12 +124,18 @@ struct Rabin_Karp
 		return stringHash % MOD;
 	}
 
-	int Rabin_Karp_Double_Hash(string &str, string &pattern)
+	// Compare two hash values
+	bool compHash(RKHash &stringHash, RKHash &patHash)
 	{
-		long long str_len = str.size();
-		long long pat_len = pattern.size();
+		return (stringHash.first == patHash.first && stringHash.second == patHash.second);
+	}
 
-		if (pat_len > str_len)
+	int rabinKarpDoubleHash(string &str, string &pattern)
+	{
+		long long strLen = str.size();
+		long long patLen = pattern.size();
+
+		if (patLen > strLen)
 			return -1;
 
 		long long MAX_WEIGHT_1 = 1;
@@ -134,28 +144,28 @@ struct Rabin_Karp
 		// Compute RADIX raised to the power of pat_len.
 		// This value is used to remove the contribution of the old character
 		// when updating the rolling hash.
-		for (long long i = 0; i < pat_len; i++)
+		for (long long i = 0; i < patLen; i++)
 		{
 			MAX_WEIGHT_1 = (MAX_WEIGHT_1 * RADIX_1) % MOD_1;
 			MAX_WEIGHT_2 = (MAX_WEIGHT_2 * RADIX_2) % MOD_2;
 		}
 
 		// Compute the initial hash values for the pattern and the first window of the text
-		pair<long long, long long> Pattern_Hash = Hash_Value(pattern, pat_len);
-		pair<long long, long long> String_Hash = Hash_Value(str, pat_len);
+		RKHash patternHash = Hash_Value(pattern, patLen);
+		RKHash stringHash = Hash_Value(str, patLen);
 
-		if (String_Hash.first == Pattern_Hash.first && String_Hash.second == Pattern_Hash.second)
+		if (compHash(stringHash, patternHash))
 			return 0;
 
-		for (long long i = 1; i <= (str_len - pat_len); i++)
+		for (ll i = 1; i <= (strLen - patLen); i++)
 		{
-			long long old_char = charToValue(str[i - 1]);
-			long long new_char = charToValue(str[i + pat_len - 1]);
+			ll old_char = charToValue(str[i - 1]);
+			ll new_char = charToValue(str[i + patLen - 1]);
 
-			String_Hash.first = rollHash(String_Hash.first, old_char, new_char, MOD_1, RADIX_1, MAX_WEIGHT_1);
-			String_Hash.second = rollHash(String_Hash.second, old_char, new_char, MOD_2, RADIX_2, MAX_WEIGHT_2);
+			stringHash.first = rollHash(stringHash.first, old_char, new_char, MOD_1, RADIX_1, MAX_WEIGHT_1);
+			stringHash.second = rollHash(stringHash.second, old_char, new_char, MOD_2, RADIX_2, MAX_WEIGHT_2);
 
-			if (String_Hash.first == Pattern_Hash.first && String_Hash.second == Pattern_Hash.second)
+			if (compHash(stringHash, patternHash))
 				return i;
 		}
 		return -1;
@@ -166,5 +176,5 @@ int main()
 {
 	string str = "helloworld";
 	string pattern = "world";
-	cout << RabinKarp.Rabin_Karp_Double_Hash(str, pattern);
+	cout << RabinKarp.rabinKarpDoubleHash(str, pattern);
 }
